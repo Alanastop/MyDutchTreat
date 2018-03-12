@@ -12542,11 +12542,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alana\\Source\\Repos\\DutchTreat\\DutchTreat.Library2\\DutchTreat.Library2.csproj",
+      "projectUniqueName": "C:\\Users\\alana\\source\\repos\\DutchTreat\\DutchTreat.Library2\\DutchTreat.Library2.csproj",
       "projectName": "DutchTreat.Library2",
-      "projectPath": "C:\\Users\\alana\\Source\\Repos\\DutchTreat\\DutchTreat.Library2\\DutchTreat.Library2.csproj",
+      "projectPath": "C:\\Users\\alana\\source\\repos\\DutchTreat\\DutchTreat.Library2\\DutchTreat.Library2.csproj",
       "packagesPath": "C:\\Users\\alana\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alana\\Source\\Repos\\DutchTreat\\DutchTreat.Library2\\obj\\",
+      "outputPath": "C:\\Users\\alana\\source\\repos\\DutchTreat\\DutchTreat.Library2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

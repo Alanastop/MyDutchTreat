@@ -13150,11 +13150,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alana\\Source\\Repos\\DutchTreat\\DutchTreat.Api\\DutchTreat.Api.csproj",
+      "projectUniqueName": "C:\\Users\\alana\\source\\repos\\DutchTreat\\DutchTreat.Api\\DutchTreat.Api.csproj",
       "projectName": "DutchTreat.Api",
-      "projectPath": "C:\\Users\\alana\\Source\\Repos\\DutchTreat\\DutchTreat.Api\\DutchTreat.Api.csproj",
+      "projectPath": "C:\\Users\\alana\\source\\repos\\DutchTreat\\DutchTreat.Api\\DutchTreat.Api.csproj",
       "packagesPath": "C:\\Users\\alana\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alana\\Source\\Repos\\DutchTreat\\DutchTreat.Api\\obj\\",
+      "outputPath": "C:\\Users\\alana\\source\\repos\\DutchTreat\\DutchTreat.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -13173,8 +13173,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\alana\\Source\\Repos\\DutchTreat\\DutchTreat.Library2\\DutchTreat.Library2.csproj": {
-              "projectPath": "C:\\Users\\alana\\Source\\Repos\\DutchTreat\\DutchTreat.Library2\\DutchTreat.Library2.csproj"
+            "C:\\Users\\alana\\source\\repos\\DutchTreat\\DutchTreat.Library2\\DutchTreat.Library2.csproj": {
+              "projectPath": "C:\\Users\\alana\\source\\repos\\DutchTreat\\DutchTreat.Library2\\DutchTreat.Library2.csproj"
             }
           }
         }
