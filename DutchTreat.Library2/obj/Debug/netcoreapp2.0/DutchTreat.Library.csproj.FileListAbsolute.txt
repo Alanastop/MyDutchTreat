@@ -1,0 +1,10 @@
+C:\Users\datacom_psagianos\Source\Repos\DutchTreat.MVC\DutchTreat.Library2\bin\Debug\netcoreapp2.0\DutchTreat.Library.deps.json
+C:\Users\datacom_psagianos\Source\Repos\DutchTreat.MVC\DutchTreat.Library2\bin\Debug\netcoreapp2.0\DutchTreat.Library.runtimeconfig.json
+C:\Users\datacom_psagianos\Source\Repos\DutchTreat.MVC\DutchTreat.Library2\bin\Debug\netcoreapp2.0\DutchTreat.Library.runtimeconfig.dev.json
+C:\Users\datacom_psagianos\Source\Repos\DutchTreat.MVC\DutchTreat.Library2\bin\Debug\netcoreapp2.0\DutchTreat.Library.dll
+C:\Users\datacom_psagianos\Source\Repos\DutchTreat.MVC\DutchTreat.Library2\bin\Debug\netcoreapp2.0\DutchTreat.Library.pdb
+C:\Users\datacom_psagianos\Source\Repos\DutchTreat.MVC\DutchTreat.Library2\obj\Debug\netcoreapp2.0\DutchTreat.Library.csproj.CoreCompileInputs.cache
+C:\Users\datacom_psagianos\Source\Repos\DutchTreat.MVC\DutchTreat.Library2\obj\Debug\netcoreapp2.0\DutchTreat.Library.AssemblyInfoInputs.cache
+C:\Users\datacom_psagianos\Source\Repos\DutchTreat.MVC\DutchTreat.Library2\obj\Debug\netcoreapp2.0\DutchTreat.Library.AssemblyInfo.cs
+C:\Users\datacom_psagianos\Source\Repos\DutchTreat.MVC\DutchTreat.Library2\obj\Debug\netcoreapp2.0\DutchTreat.Library.dll
+C:\Users\datacom_psagianos\Source\Repos\DutchTreat.MVC\DutchTreat.Library2\obj\Debug\netcoreapp2.0\DutchTreat.Library.pdb
