@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-debugger;
+//debugger;
 var $theForm = $("#theForm");
 $theForm.on("click", function () {
     $theForm.toggle(1000);
