@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "./ClientApp/$$_lazy_route_resource lazy recursive
 /***/ "./ClientApp/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"col-mid-9\">\r\n        <h3>{{this.title}}</h3>\r\n    </div>\r\n    <div class=\"col-mid-3\">\r\n        <div class=\"well well-sm\">\r\n          <h3>Cart</h3>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-9\">\r\n        <h3>{{this.title}}</h3>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n        <div class=\"well well-sm\">\r\n          <h3>Cart</h3>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 

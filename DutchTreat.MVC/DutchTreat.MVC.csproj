@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\shop\productList.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Startup.cs" />
   </ItemGroup>
 
@@ -34,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\shop\productList.component.ts" />
     <TypeScriptCompile Include="wwwroot\ts\main.ts" />
     <TypeScriptCompile Include="wwwroot\ts\storecustomer.ts" />
   </ItemGroup>
