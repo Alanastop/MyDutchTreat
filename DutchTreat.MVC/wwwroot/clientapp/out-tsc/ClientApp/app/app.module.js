@@ -9,18 +9,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = require("@angular/platform-browser");
 var core_1 = require("@angular/core");
 var app_component_1 = require("./app.component");
+var productList_component_1 = require("./shop/productList.component");
+var dataService_1 = require("./shared/dataService");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             declarations: [
-                app_component_1.AppComponent
+                app_component_1.AppComponent,
+                productList_component_1.ProductList
             ],
             imports: [
                 platform_browser_1.BrowserModule
             ],
-            providers: [],
+            providers: [
+                dataService_1.DataService
+            ],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);

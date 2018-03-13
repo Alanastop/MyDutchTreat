@@ -20,7 +20,7 @@ webpackEmptyAsyncContext.id = "./ClientApp/$$_lazy_route_resource lazy recursive
 /***/ "./ClientApp/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-9\">\r\n        <h3>{{this.title}}</h3>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n        <div class=\"well well-sm\">\r\n          <h3>Cart</h3>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-9\">\r\n        <h3>{{this.title}}</h3>\r\n        <product-list></product-list>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n        <div class=\"well well-sm\">\r\n          <h3>Cart</h3>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -69,25 +69,113 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
 var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 var app_component_1 = __webpack_require__("./ClientApp/app/app.component.ts");
+var productList_component_1 = __webpack_require__("./ClientApp/app/shop/productList.component.ts");
+var dataService_1 = __webpack_require__("./ClientApp/app/shared/dataService.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
             declarations: [
-                app_component_1.AppComponent
+                app_component_1.AppComponent,
+                productList_component_1.ProductList
             ],
             imports: [
-                platform_browser_1.BrowserModule
+                platform_browser_1.BrowserModule,
+                http_1.HttpClientModule
             ],
-            providers: [],
+            providers: [
+                dataService_1.DataService
+            ],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);
     return AppModule;
 }());
 exports.AppModule = AppModule;
+
+
+/***/ }),
+
+/***/ "./ClientApp/app/shared/dataService.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+var DataService = /** @class */ (function () {
+    function DataService(http) {
+        this.http = http;
+        this.products = [];
+    }
+    DataService.prototype.getProducts = function () {
+        this.http.get("/api/products");
+    };
+    DataService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.HttpClient])
+    ], DataService);
+    return DataService;
+}());
+exports.DataService = DataService;
+
+
+/***/ }),
+
+/***/ "./ClientApp/app/shop/productList.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n    <ul>\r\n        <li *ngFor=\"let p of products\">{{ p.title }}: {{ p.price | currency:\"EUR\":true }}</li>\r\n    </ul>\r\n</div>"
+
+/***/ }),
+
+/***/ "./ClientApp/app/shop/productList.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+var dataService_1 = __webpack_require__("./ClientApp/app/shared/dataService.ts");
+var ProductList = /** @class */ (function () {
+    function ProductList(data) {
+        this.data = data;
+        this.products = [];
+        this.products = data.products;
+    }
+    ProductList = __decorate([
+        core_1.Component({
+            selector: "product-list",
+            template: __webpack_require__("./ClientApp/app/shop/productList.component.html"),
+            styleUrls: []
+        }),
+        __metadata("design:paramtypes", [dataService_1.DataService])
+    ], ProductList);
+    return ProductList;
+}());
+exports.ProductList = ProductList;
 
 
 /***/ }),
