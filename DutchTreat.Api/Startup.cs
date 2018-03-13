@@ -43,6 +43,17 @@ namespace DutchTreat.Api
                 cfg.UseSqlServer(this.Configuration.GetConnectionString("DutchConnectionString"));
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder =>
+                    builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .WithExposedHeaders("content-disposition")
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    .SetPreflightMaxAge(TimeSpan.FromSeconds(3600)));
+            });
 
             services.AddTransient<DutchSeeder>();
             services.AddIdentity<StoreUser, IdentityRole>(config =>
@@ -84,6 +95,8 @@ namespace DutchTreat.Api
 
             app.UseAuthentication();
 
+            app.UseCors("CorsPolicy");
+            
             app.UseMvc(cfg => {
                 cfg.MapRoute("Default",
                     "{controller}/{action}/{id?}",

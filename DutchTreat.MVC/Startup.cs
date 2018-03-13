@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Text;
 
 namespace DutchTreat.MVC
@@ -37,6 +38,18 @@ namespace DutchTreat.MVC
             services.AddTransient<IMailService, MailService>();
 
             services.AddAutoMapper();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder =>
+                    builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .WithExposedHeaders("content-disposition")
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    .SetPreflightMaxAge(TimeSpan.FromSeconds(3600)));
+            });
 
             services.AddDbContext<DutchContext>(cfg => {
                 cfg.UseSqlServer(this.Configuration.GetConnectionString("DutchConnectionString"));
@@ -79,6 +92,8 @@ namespace DutchTreat.MVC
 
             app.UseAuthentication();
 
+            app.UseCors("CorsPolicy");
+                      
             app.UseMvc(cfg=> {
                 cfg.MapRoute("Default",
                     "{controller}/{action}/{id?}",

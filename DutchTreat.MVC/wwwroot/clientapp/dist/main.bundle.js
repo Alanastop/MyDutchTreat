@@ -116,13 +116,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+__webpack_require__("./node_modules/rxjs/_esm5/add/operator/map.js");
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
         this.products = [];
     }
     DataService.prototype.getProducts = function () {
-        this.http.get("/api/products");
+        var _this = this;
+        return this.http.get("http://localhost:50939/api/products")
+            .map(function (data) {
+            _this.products = data;
+            return true;
+        });
     };
     DataService = __decorate([
         core_1.Injectable(),
@@ -163,8 +169,16 @@ var ProductList = /** @class */ (function () {
     function ProductList(data) {
         this.data = data;
         this.products = [];
-        this.products = data.products;
     }
+    ProductList.prototype.ngOnInit = function () {
+        var _this = this;
+        this.data.getProducts()
+            .subscribe(function (success) {
+            if (success) {
+                _this.products = _this.data.products;
+            }
+        });
+    };
     ProductList = __decorate([
         core_1.Component({
             selector: "product-list",

@@ -1,5 +1,6 @@
 ﻿import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DataService {
@@ -11,6 +12,10 @@ export class DataService {
     public products = [];
 
     getProducts() {
-        this.http.get("/api/products");
+        return this.http.get("http://localhost:50939/api/products")
+            .map((data: any[]) => {
+                this.products = data;
+                return true;
+            });
     }
 }
