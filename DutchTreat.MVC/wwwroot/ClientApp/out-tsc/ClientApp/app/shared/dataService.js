@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var http_1 = require("@angular/common/http");
+var http_1 = require("@angular/http");
 var core_1 = require("@angular/core");
 require("rxjs/add/operator/map");
 var DataService = /** @class */ (function () {
@@ -20,14 +20,11 @@ var DataService = /** @class */ (function () {
     DataService.prototype.getProducts = function () {
         var _this = this;
         return this.http.get("http://localhost:50939/api/products")
-            .map(function (data) {
-            _this.products = data;
-            return true;
-        });
+            .map(function (result) { return _this.products = result.json(); });
     };
     DataService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.HttpClient])
+        __metadata("design:paramtypes", [http_1.Http])
     ], DataService);
     return DataService;
 }());

@@ -69,7 +69,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
 var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+var http_1 = __webpack_require__("./node_modules/@angular/http/esm5/http.js");
 var app_component_1 = __webpack_require__("./ClientApp/app/app.component.ts");
 var productList_component_1 = __webpack_require__("./ClientApp/app/shop/productList.component.ts");
 var dataService_1 = __webpack_require__("./ClientApp/app/shared/dataService.ts");
@@ -84,7 +84,7 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 platform_browser_1.BrowserModule,
-                http_1.HttpClientModule
+                http_1.HttpModule
             ],
             providers: [
                 dataService_1.DataService
@@ -114,7 +114,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+var http_1 = __webpack_require__("./node_modules/@angular/http/esm5/http.js");
 var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 __webpack_require__("./node_modules/rxjs/_esm5/add/operator/map.js");
 var DataService = /** @class */ (function () {
@@ -125,14 +125,11 @@ var DataService = /** @class */ (function () {
     DataService.prototype.getProducts = function () {
         var _this = this;
         return this.http.get("http://localhost:50939/api/products")
-            .map(function (data) {
-            _this.products = data;
-            return true;
-        });
+            .map(function (result) { return _this.products = result.json(); });
     };
     DataService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.HttpClient])
+        __metadata("design:paramtypes", [http_1.Http])
     ], DataService);
     return DataService;
 }());
@@ -141,10 +138,17 @@ exports.DataService = DataService;
 
 /***/ }),
 
+/***/ "./ClientApp/app/shop/productList.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ".product-info img {\r\n    max-width: 100px;\r\n    float: left;\r\n    margin: 0 2px;\r\n    border: solid 1px black;\r\n}\r\n\r\n.product-info .product-name{\r\n    font-size: large;\r\n    font-weight: bold;\r\n}"
+
+/***/ }),
+
 /***/ "./ClientApp/app/shop/productList.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <ul>\r\n        <li *ngFor=\"let p of products\">{{ p.title }}: {{ p.price | currency:\"EUR\":true }}</li>\r\n    </ul>\r\n</div>"
+module.exports = "<div class=\"row\">\r\n\r\n    <div class=\"product-info col-md-4 well well-sm\" *ngFor=\"let p of products\">\r\n        <img src=\"/img/{{ p.artId }}.jpg\"  class=\"img-responsive\" alt=\"{{ p.title }}\"/>\r\n        <div class=\"product-name\">{{ p.category }} - {{p.size}}</div>\r\n            <div><strong>Price</strong>: {{ p.price | currency:\"EUR\":true }}</div>\r\n            <div><strong>Artist</strong>: {{ p.artist }}</div>\r\n            <div><strong>Title</strong>: {{ p.title }}</div>\r\n            <div><strong>Description</strong>: {{ p.artDecription }}</div>\r\n        <button id=\"buyButton\" class=\"btn btn-success btn-sm pull-right\">Buy</button>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -168,22 +172,18 @@ var dataService_1 = __webpack_require__("./ClientApp/app/shared/dataService.ts")
 var ProductList = /** @class */ (function () {
     function ProductList(data) {
         this.data = data;
-        this.products = [];
+        //this.products = data.products;
     }
     ProductList.prototype.ngOnInit = function () {
         var _this = this;
         this.data.getProducts()
-            .subscribe(function (success) {
-            if (success) {
-                _this.products = _this.data.products;
-            }
-        });
+            .subscribe(function () { return _this.products = _this.data.products; });
     };
     ProductList = __decorate([
         core_1.Component({
             selector: "product-list",
             template: __webpack_require__("./ClientApp/app/shop/productList.component.html"),
-            styleUrls: []
+            styles: [__webpack_require__("./ClientApp/app/shop/productList.component.css")]
         }),
         __metadata("design:paramtypes", [dataService_1.DataService])
     ], ProductList);

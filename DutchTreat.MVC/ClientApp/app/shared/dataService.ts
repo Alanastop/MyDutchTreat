@@ -1,21 +1,21 @@
-﻿import { HttpClient } from "@angular/common/http";
+﻿import { Http, Response } from "@angular/http";
+import { Observable } from "rxjs";
+import { Product } from "./product";
 import { Injectable } from "@angular/core";
 import 'rxjs/add/operator/map';
+
 
 @Injectable()
 export class DataService {
 
-    constructor(private http: HttpClient) {
+    constructor(private http: Http) {
 
     }
 
-    public products = [];
+    public products: Product[] = [];
 
-    getProducts() {
+    public getProducts(): Observable<Product[]> {
         return this.http.get("http://localhost:50939/api/products")
-            .map((data: any[]) => {
-                this.products = data;
-                return true;
-            });
+            .map((result: Response) => this.products = result.json());            
     }
 }
