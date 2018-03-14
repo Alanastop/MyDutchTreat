@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\checkout\checkout.component.ts" />
+    <None Remove="ClientApp\app\orderList\orderList.component.ts" />
     <None Remove="ClientApp\app\shared\dataService.ts" />
     <None Remove="ClientApp\app\shared\login.component.ts" />
     <None Remove="ClientApp\app\shared\order.ts" />
@@ -46,6 +47,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\checkout\checkout.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\orderList\orderList.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\dataService.ts" />
     <TypeScriptCompile Include="ClientApp\app\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\order.ts" />

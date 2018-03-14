@@ -19,6 +19,7 @@ var DataService = /** @class */ (function () {
         this.token = "";
         this.order = new order_1.Order();
         this.products = [];
+        this.orders = [];
     }
     DataService.prototype.getProducts = function () {
         var _this = this;
@@ -44,7 +45,6 @@ var DataService = /** @class */ (function () {
     };
     DataService.prototype.checkout = function () {
         var _this = this;
-        debugger;
         if (!this.order.orderNumber) {
             this.order.orderNumber = this.order.orderDate.getFullYear().toString() + this.order.orderDate.getTime().toString();
         }
@@ -55,6 +55,16 @@ var DataService = /** @class */ (function () {
             _this.order = new order_1.Order();
             return true;
         });
+    };
+    DataService.prototype.getOrders = function () {
+        var _this = this;
+        debugger;
+        if (this.token) {
+            return this.http.get("http://localhost:50939/api/orders", {
+                headers: new http_1.Headers({ "Authorization": "Bearer " + this.token })
+            })
+                .map(function (result) { return _this.orders = result.json(); });
+        }
     };
     DataService.prototype.AddToOrder = function (product) {
         var item = this.order.items.find(function (item) { return item.productId == product.id; });

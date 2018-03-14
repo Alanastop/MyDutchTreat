@@ -68,6 +68,6 @@ namespace DutchTreat.MVC.Controllers
             }
             else
                 return BadRequest("Couldn't connect to database");
-        }
+        } 
     }
 }

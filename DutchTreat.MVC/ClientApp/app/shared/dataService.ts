@@ -16,10 +16,11 @@ export class DataService {
 
     private token: string = "";
     private tokenExpiration: Date;
-
+    public credentials;
     public order: Order = new Order();
 
     public products: Product[] = [];
+    public orders: Order[] = [];
 
     public getProducts(): Observable<Product[]> {
         return this.http.get("http://localhost:50939/api/products")
@@ -40,11 +41,11 @@ export class DataService {
             });
     }
 
-    public checkout() {
-        debugger;
+    public checkout() {       
         if (!this.order.orderNumber) {
             this.order.orderNumber = this.order.orderDate.getFullYear().toString() + this.order.orderDate.getTime().toString();
         }
+
         return this.http.post("http://localhost:50939/api/orders", this.order, {
             headers: new Headers({ "Authorization": "Bearer " + this.token })
         })
@@ -52,6 +53,16 @@ export class DataService {
                 this.order = new Order();               
                 return true;
             });
+    }
+
+    public getOrders(): Observable<Order[]> {
+        debugger;
+        if (this.token) {
+            return this.http.get("http://localhost:50939/api/orders", {
+                headers: new Headers({ "Authorization": "Bearer " + this.token })
+            })
+                .map((result: Response) => this.orders = result.json());
+        }
     }
 
     public AddToOrder(product: Product) {

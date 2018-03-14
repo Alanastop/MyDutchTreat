@@ -76,13 +76,15 @@ var cart_component_1 = __webpack_require__("./ClientApp/app/shop/cart.component.
 var shop_component_1 = __webpack_require__("./ClientApp/app/shop/shop.component.ts");
 var checkout_component_1 = __webpack_require__("./ClientApp/app/checkout/checkout.component.ts");
 var login_component_1 = __webpack_require__("./ClientApp/app/login/login.component.ts");
+var orderList_component_1 = __webpack_require__("./ClientApp/app/orderList/orderList.component.ts");
 var dataService_1 = __webpack_require__("./ClientApp/app/shared/dataService.ts");
 var router_1 = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
 var forms_1 = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
 var routes = [
     { path: "", component: shop_component_1.Shop },
     { path: "checkout", component: checkout_component_1.Checkout },
-    { path: "login", component: login_component_1.Login }
+    { path: "login", component: login_component_1.Login },
+    { path: "orderHistory", component: orderList_component_1.OrderList }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -95,7 +97,8 @@ var AppModule = /** @class */ (function () {
                 cart_component_1.Cart,
                 shop_component_1.Shop,
                 checkout_component_1.Checkout,
-                login_component_1.Login
+                login_component_1.Login,
+                orderList_component_1.OrderList
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -122,14 +125,14 @@ exports.AppModule = AppModule;
 /***/ "./ClientApp/app/checkout/checkout.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".checkout-thumb {\r\n    max-width: 100px;\r\n}\r\n"
+module.exports = ".checkout-thumb {\r\n    max-width: 100px;\r\n}\r\n\r\n.myOrders {\r\n    float: right;\r\n}"
 
 /***/ }),
 
 /***/ "./ClientApp/app/checkout/checkout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div *ngIf=\"errorMessage\" class=\"alert alert-warning\">{{ errorMessage }}</div>\r\n    <h3>Confirm Order</h3>\r\n    <table class=\"table table-bordered table-hover\">\r\n        <tr *ngFor=\"let o of data.order.items\">\r\n            <td><img src=\"/img/{{ o.productArtId }}.jpg\" alt=\"o.productTitle\" class=\"img-thumbnail checkout-thumb\" /></td>\r\n            <td>{{ o.productCategory }}({{ o.productSize }}) - {{ o.productArtist }}: {{ o.productTitle }}</td>\r\n            <td>{{ o.quantity }}</td>\r\n            <td>{{ o.unitPrice|currency:'USD':true }}</td>\r\n            <td>{{ (o.unitPrice * o.quantity)|currency:'USD':true }}</td>\r\n        </tr>\r\n    </table>\r\n    <div class=\"col-md-4 col-md-offset-8 text-right\">\r\n        <table class=\"table table-condensed\">\r\n            <tr>\r\n                <td class=\"text-right\">Subtotal</td>\r\n                <td class=\"text-right\">{{ data.order.subtotal|currency:'USD':true }}</td>\r\n            </tr>\r\n            <tr>\r\n                <td class=\"text-right\">Shipping</td>\r\n                <td class=\"text-right\">$ 0.00</td>\r\n            </tr>\r\n            <tr>\r\n                <td class=\"text-right\">Total:</td>\r\n                <td class=\"text-right\">{{ data.order.subtotal|currency:'USD':true }}</td>\r\n            </tr>\r\n        </table>\r\n        <button class=\"btn btn-success\" (click)=\"onCheckout()\">Complete Purchase</button>\r\n        <a routerLink=\"/\" class=\"btn btn-info\">Cancel</a>\r\n    </div>\r\n\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <div *ngIf=\"errorMessage\" class=\"alert alert-warning\">{{ errorMessage }}</div>\r\n    <h3>Confirm Order</h3>\r\n    <a routerLink=\"/orderHistory\" class=\"btn btn-link fa-history myOrders\" (click)=\"myOrders()\">Order History</a>\r\n    <table class=\"table table-bordered table-hover\">\r\n        <tr *ngFor=\"let o of data.order.items\">\r\n            <td><img src=\"/img/{{ o.productArtId }}.jpg\" alt=\"o.productTitle\" class=\"img-thumbnail checkout-thumb\" /></td>\r\n            <td>{{ o.productCategory }}({{ o.productSize }}) - {{ o.productArtist }}: {{ o.productTitle }}</td>\r\n            <td>{{ o.quantity }}</td>\r\n            <td>{{ o.unitPrice|currency:'USD':true }}</td>\r\n            <td>{{ (o.unitPrice * o.quantity)|currency:'USD':true }}</td>\r\n        </tr>\r\n    </table>\r\n    <div class=\"col-md-4 col-md-offset-8 text-right\">\r\n        <table class=\"table table-condensed\">\r\n            <tr>\r\n                <td class=\"text-right\">Subtotal</td>\r\n                <td class=\"text-right\">{{ data.order.subtotal|currency:'USD':true }}</td>\r\n            </tr>\r\n            <tr>\r\n                <td class=\"text-right\">Shipping</td>\r\n                <td class=\"text-right\">$ 0.00</td>\r\n            </tr>\r\n            <tr>\r\n                <td class=\"text-right\">Total:</td>\r\n                <td class=\"text-right\">{{ data.order.subtotal|currency:'USD':true }}</td>\r\n            </tr>\r\n        </table>\r\n        <button class=\"btn btn-success\" (click)=\"onCheckout()\">Complete Purchase</button>\r\n        <a routerLink=\"/\" class=\"btn btn-info\">Cancel</a>\r\n    </div>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -166,6 +169,10 @@ var Checkout = /** @class */ (function () {
                 _this.router.navigate(["/"]);
             }
         }, function (err) { return _this.errorMessage = "Failed to save order"; });
+    };
+    Checkout.prototype.myOrders = function () {
+        debugger;
+        this.router.navigate(["orderHistory"]);
     };
     Checkout = __decorate([
         core_1.Component({
@@ -245,6 +252,64 @@ exports.Login = Login;
 
 /***/ }),
 
+/***/ "./ClientApp/app/orderList/orderList.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./ClientApp/app/orderList/orderList.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n    <div class=\"order-info col-md-4 well well-sm\" *ngFor=\"let o of orders\">\r\n        <div><strong>OrderDate</strong>: {{ o.orderDate}}</div>\r\n        <div><strong>OrderNumber</strong>: {{ o.orderNumber }}</div>\r\n        <div><strong>UserName</strong>: {{ o.user.username }}</div>\r\n        <!--<div><strong>Description</strong>: {{ p.artDescription }}</div>-->\r\n        <button id=\"buyButton\" class=\"btn btn-success btn-sm pull-right\">Buy</button>\r\n    </div>\r\n</div>"
+
+/***/ }),
+
+/***/ "./ClientApp/app/orderList/orderList.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+var dataService_1 = __webpack_require__("./ClientApp/app/shared/dataService.ts");
+var router_1 = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+var OrderList = /** @class */ (function () {
+    function OrderList(data, router) {
+        this.data = data;
+        this.router = router;
+    }
+    OrderList.prototype.ngOnInit = function () {
+        var _this = this;
+        this.data.getOrders()
+            .subscribe(function () { return _this.orders = _this.data.orders; });
+        debugger;
+    };
+    OrderList = __decorate([
+        core_1.Component({
+            selector: "order-list",
+            template: __webpack_require__("./ClientApp/app/orderList/orderList.component.html"),
+            styles: [__webpack_require__("./ClientApp/app/orderList/orderList.component.css")]
+        }),
+        __metadata("design:paramtypes", [dataService_1.DataService, router_1.Router])
+    ], OrderList);
+    return OrderList;
+}());
+exports.OrderList = OrderList;
+
+
+/***/ }),
+
 /***/ "./ClientApp/app/shared/dataService.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -270,6 +335,7 @@ var DataService = /** @class */ (function () {
         this.token = "";
         this.order = new order_1.Order();
         this.products = [];
+        this.orders = [];
     }
     DataService.prototype.getProducts = function () {
         var _this = this;
@@ -295,7 +361,6 @@ var DataService = /** @class */ (function () {
     };
     DataService.prototype.checkout = function () {
         var _this = this;
-        debugger;
         if (!this.order.orderNumber) {
             this.order.orderNumber = this.order.orderDate.getFullYear().toString() + this.order.orderDate.getTime().toString();
         }
@@ -306,6 +371,16 @@ var DataService = /** @class */ (function () {
             _this.order = new order_1.Order();
             return true;
         });
+    };
+    DataService.prototype.getOrders = function () {
+        var _this = this;
+        debugger;
+        if (this.token) {
+            return this.http.get("http://localhost:50939/api/orders", {
+                headers: new http_1.Headers({ "Authorization": "Bearer " + this.token })
+            })
+                .map(function (result) { return _this.orders = result.json(); });
+        }
     };
     DataService.prototype.AddToOrder = function (product) {
         var item = this.order.items.find(function (item) { return item.productId == product.id; });
@@ -347,6 +422,7 @@ var Order = /** @class */ (function () {
     function Order() {
         this.orderDate = new Date();
         this.items = new Array();
+        this.user = new User();
     }
     Object.defineProperty(Order.prototype, "subtotal", {
         get: function () {
@@ -365,6 +441,12 @@ var OrderItem = /** @class */ (function () {
     return OrderItem;
 }());
 exports.OrderItem = OrderItem;
+var User = /** @class */ (function () {
+    function User() {
+    }
+    return User;
+}());
+exports.User = User;
 
 
 /***/ }),
@@ -434,7 +516,7 @@ module.exports = ".product-info img {\r\n    max-width: 100px;\r\n    float: lef
 /***/ "./ClientApp/app/shop/productList.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n\r\n    <div class=\"product-info col-md-4 well well-sm\" *ngFor=\"let p of products\">\r\n        <img src=\"/img/{{ p.artId }}.jpg\"  class=\"img-responsive\" alt=\"{{ p.title }}\"/>\r\n        <div class=\"product-name\">{{ p.category }} - {{p.size}}</div>\r\n            <div><strong>Price</strong>: {{ p.price | currency:\"EUR\":true }}</div>\r\n            <div><strong>Artist</strong>: {{ p.artist }}</div>\r\n            <div><strong>Title</strong>: {{ p.title }}</div>\r\n            <div><strong>Description</strong>: {{ p.artDescription }}</div>\r\n        <button id=\"buyButton\" class=\"btn btn-success btn-sm pull-right\" (click)=\"addProduct(p)\">Buy</button>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <div class=\"product-info col-md-4 well well-sm\" *ngFor=\"let p of products\">\r\n        <img src=\"/img/{{ p.artId }}.jpg\"  class=\"img-responsive\" alt=\"{{ p.title }}\"/>\r\n        <div class=\"product-name\">{{ p.category }} - {{p.size}}</div>\r\n            <div><strong>Price</strong>: {{ p.price | currency:\"EUR\":true }}</div>\r\n            <div><strong>Artist</strong>: {{ p.artist }}</div>\r\n            <div><strong>Title</strong>: {{ p.title }}</div>\r\n            <div><strong>Description</strong>: {{ p.artDescription }}</div>\r\n        <button id=\"buyButton\" class=\"btn btn-success btn-sm pull-right\" (click)=\"addProduct(p)\">Buy</button>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -486,7 +568,7 @@ exports.ProductList = ProductList;
 /***/ "./ClientApp/app/shop/shop.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n\t<div class=\"col-md-9\">\r\n\t\t<h3>{{this.title}}</h3>\r\n\t\t<product-list></product-list>\r\n\t</div>\r\n\t<div class=\"col-md-3\">\r\n\t\t<div class=\"well well-sm\">\r\n\t\t\t<the-cart></the-cart>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n\t<div class=\"col-md-9\">\r\n\t\t<h3>{{this.title}}</h3>\r\n\t\t<product-list></product-list>\r\n\t</div>\r\n    <div class=\"col-md-3\">\r\n        <div class=\"well well-sm\">\r\n            <the-cart></the-cart>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 

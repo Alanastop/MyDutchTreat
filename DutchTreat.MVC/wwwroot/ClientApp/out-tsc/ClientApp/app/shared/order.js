@@ -5,6 +5,7 @@ var Order = /** @class */ (function () {
     function Order() {
         this.orderDate = new Date();
         this.items = new Array();
+        this.user = new User();
     }
     Object.defineProperty(Order.prototype, "subtotal", {
         get: function () {
@@ -23,4 +24,10 @@ var OrderItem = /** @class */ (function () {
     return OrderItem;
 }());
 exports.OrderItem = OrderItem;
+var User = /** @class */ (function () {
+    function User() {
+    }
+    return User;
+}());
+exports.User = User;
 //# sourceMappingURL=order.js.map

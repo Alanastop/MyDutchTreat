@@ -12,35 +12,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dataService_1 = require("../shared/dataService");
 var router_1 = require("@angular/router");
-var Checkout = /** @class */ (function () {
-    function Checkout(data, router) {
+var Orders = /** @class */ (function () {
+    function Orders(data, router) {
         this.data = data;
         this.router = router;
-        this.errorMessage = "";
     }
-    Checkout.prototype.onCheckout = function () {
-        var _this = this;
-        alert("Doing checkout");
-        this.data.checkout()
-            .subscribe(function (success) {
-            if (success) {
-                _this.router.navigate(["/"]);
-            }
-        }, function (err) { return _this.errorMessage = "Failed to save order"; });
-    };
-    Checkout.prototype.myOrders = function () {
-        debugger;
-        this.router.navigate(["orderHistory"]);
-    };
-    Checkout = __decorate([
+    Orders = __decorate([
         core_1.Component({
-            selector: "checkout",
-            templateUrl: "checkout.component.html",
-            styleUrls: ['checkout.component.css']
+            selector: "orders",
+            templateUrl: "orders.component.ts",
+            styleUrls: []
         }),
         __metadata("design:paramtypes", [dataService_1.DataService, router_1.Router])
-    ], Checkout);
-    return Checkout;
+    ], Orders);
+    return Orders;
 }());
-exports.Checkout = Checkout;
-//# sourceMappingURL=checkout.component.js.map
+exports.Orders = Orders;
+//# sourceMappingURL=orders.component.js.map

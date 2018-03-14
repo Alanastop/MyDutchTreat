@@ -23,4 +23,9 @@ export class Checkout {
                 }
             }, err => this.errorMessage = "Failed to save order");
     }
+
+    myOrders() {
+        debugger;
+        this.router.navigate(["orderHistory"]);
+    }
 }

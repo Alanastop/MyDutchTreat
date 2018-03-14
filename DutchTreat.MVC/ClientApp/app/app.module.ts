@@ -9,6 +9,7 @@ import { Cart } from "./shop/cart.component";
 import { Shop } from "./shop/shop.component";
 import { Checkout } from "./checkout/checkout.component";
 import { Login } from "./login/login.component";
+import { OrderList } from "./orderList/orderList.component";
 
 import { DataService } from "./shared/dataService";
 
@@ -18,7 +19,8 @@ import { FormsModule } from "@angular/forms";
 let routes = [
     { path: "", component: Shop },
     { path: "checkout", component: Checkout },
-    { path: "login" , component: Login}
+    { path: "login", component: Login },
+    { path: "orderHistory", component: OrderList }
 ];
 
 @NgModule({
@@ -28,7 +30,8 @@ let routes = [
       Cart,
       Shop,
       Checkout,
-      Login
+      Login,
+      OrderList
   ],
   imports: [
       BrowserModule,
