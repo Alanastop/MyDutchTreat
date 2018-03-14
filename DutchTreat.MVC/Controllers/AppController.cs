@@ -55,7 +55,6 @@ namespace DutchTreat.MVC.Controllers
             return this.View();
         }
 
-        [Authorize]
         public IActionResult Shop()
         {
             List<Product> products = null;

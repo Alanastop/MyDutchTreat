@@ -92,7 +92,13 @@ namespace DutchTreat.Library2.Repositories
 
         public void UpdateEntity(Order entity)
         {
-            throw new NotImplementedException();
+            //Convert new products to lookup of product
+            entity.Items.ToList().ForEach(item =>
+            {
+                item.Product = this.DutchContext.Products.Find(item.Product.Id);                
+            });
+
+            AddEntity(entity);
         }
 
         public Order GetEntityById(int id)
