@@ -38,9 +38,13 @@ namespace DutchTreat.Library2.Repositories
             
         }
 
-        public void DeleteEntity(int entity)
+        public void DeleteEntity(int id)
         {
-            throw new NotImplementedException();
+            var localOrder = this.DutchContext.Orders.SingleOrDefault(order => order.Id == id);
+            if (localOrder == null)
+                throw new ArgumentException();
+
+            this.DutchContext.Orders.Remove(localOrder);
         }
 
         public IEnumerable<Order> GetAll()

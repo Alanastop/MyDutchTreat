@@ -16,7 +16,10 @@ export class OrderList implements OnInit{
 
     ngOnInit(): void {
         this.data.getOrders()
-            .subscribe(() => this.orders = this.data.orders);
-        debugger;
+            .subscribe(() => this.orders = this.data.orders);      
+    }
+
+    deleteOrder(order: Order) {
+        this.data.deleteOrder(order);
     }
 }

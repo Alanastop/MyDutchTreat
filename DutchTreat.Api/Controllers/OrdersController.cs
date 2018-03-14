@@ -80,5 +80,27 @@ namespace DutchTreat.Api.Controllers
             return BadRequest("Failed to save the new order");
         }
 
+        /// <summary>
+        /// Deletes orders.
+        /// </summary>
+        /// <param name="order">
+        /// The order.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IActionResult"/>.
+        /// </returns>
+        [HttpPost("/api/orders/delete")]
+        public async Task<IActionResult> Delete([FromBody]Order order)
+        {
+            this.OrdersRepository.DeleteEntity(order.Id);
+
+            if (await this.OrdersRepository.SaveChangesAsync())
+            {
+                return this.Ok("The order removed successfully");
+            }
+            else
+                return BadRequest("Failed to store changes to database");
+        }
+
     }
 }

@@ -132,7 +132,7 @@ module.exports = ".checkout-thumb {\r\n    max-width: 100px;\r\n}\r\n\r\n.myOrde
 /***/ "./ClientApp/app/checkout/checkout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div *ngIf=\"errorMessage\" class=\"alert alert-warning\">{{ errorMessage }}</div>\r\n    <h3>Confirm Order</h3>\r\n    <a routerLink=\"/orderHistory\" class=\"btn btn-link fa-history myOrders\" (click)=\"myOrders()\">Order History</a>\r\n    <table class=\"table table-bordered table-hover\">\r\n        <tr *ngFor=\"let o of data.order.items\">\r\n            <td><img src=\"/img/{{ o.productArtId }}.jpg\" alt=\"o.productTitle\" class=\"img-thumbnail checkout-thumb\" /></td>\r\n            <td>{{ o.productCategory }}({{ o.productSize }}) - {{ o.productArtist }}: {{ o.productTitle }}</td>\r\n            <td>{{ o.quantity }}</td>\r\n            <td>{{ o.unitPrice|currency:'USD':true }}</td>\r\n            <td>{{ (o.unitPrice * o.quantity)|currency:'USD':true }}</td>\r\n        </tr>\r\n    </table>\r\n    <div class=\"col-md-4 col-md-offset-8 text-right\">\r\n        <table class=\"table table-condensed\">\r\n            <tr>\r\n                <td class=\"text-right\">Subtotal</td>\r\n                <td class=\"text-right\">{{ data.order.subtotal|currency:'USD':true }}</td>\r\n            </tr>\r\n            <tr>\r\n                <td class=\"text-right\">Shipping</td>\r\n                <td class=\"text-right\">$ 0.00</td>\r\n            </tr>\r\n            <tr>\r\n                <td class=\"text-right\">Total:</td>\r\n                <td class=\"text-right\">{{ data.order.subtotal|currency:'USD':true }}</td>\r\n            </tr>\r\n        </table>\r\n        <button class=\"btn btn-success\" (click)=\"onCheckout()\">Complete Purchase</button>\r\n        <a routerLink=\"/\" class=\"btn btn-info\">Cancel</a>\r\n    </div>\r\n\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <div *ngIf=\"errorMessage\" class=\"alert alert-warning\">{{ errorMessage }}</div>\r\n    <h3>Confirm Order</h3>\r\n    <a routerLink=\"/orderHistory\" class=\"btn btn-link fa-history myOrders\" >Order History</a>\r\n    <table class=\"table table-bordered table-hover\">\r\n        <tr *ngFor=\"let o of data.order.items\">\r\n            <td><img src=\"/img/{{ o.productArtId }}.jpg\" alt=\"o.productTitle\" class=\"img-thumbnail checkout-thumb\" /></td>\r\n            <td>{{ o.productCategory }}({{ o.productSize }}) - {{ o.productArtist }}: {{ o.productTitle }}</td>\r\n            <td>{{ o.quantity }}</td>\r\n            <td>{{ o.unitPrice|currency:'USD':true }}</td>\r\n            <td>{{ (o.unitPrice * o.quantity)|currency:'USD':true }}</td>\r\n        </tr>\r\n    </table>\r\n    <div class=\"col-md-4 col-md-offset-8 text-right\">\r\n        <table class=\"table table-condensed\">\r\n            <tr>\r\n                <td class=\"text-right\">Subtotal</td>\r\n                <td class=\"text-right\">{{ data.order.subtotal|currency:'USD':true }}</td>\r\n            </tr>\r\n            <tr>\r\n                <td class=\"text-right\">Shipping</td>\r\n                <td class=\"text-right\">$ 0.00</td>\r\n            </tr>\r\n            <tr>\r\n                <td class=\"text-right\">Total:</td>\r\n                <td class=\"text-right\">{{ data.order.subtotal|currency:'USD':true }}</td>\r\n            </tr>\r\n        </table>\r\n        <button class=\"btn btn-success\" (click)=\"onCheckout()\">Complete Purchase</button>\r\n        <a routerLink=\"/\" class=\"btn btn-info\">Cancel</a>\r\n    </div>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -169,10 +169,6 @@ var Checkout = /** @class */ (function () {
                 _this.router.navigate(["/"]);
             }
         }, function (err) { return _this.errorMessage = "Failed to save order"; });
-    };
-    Checkout.prototype.myOrders = function () {
-        debugger;
-        this.router.navigate(["orderHistory"]);
     };
     Checkout = __decorate([
         core_1.Component({
@@ -262,7 +258,7 @@ module.exports = ""
 /***/ "./ClientApp/app/orderList/orderList.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"order-info col-md-4 well well-sm\" *ngFor=\"let o of orders\">\r\n        <div><strong>OrderDate</strong>: {{ o.orderDate}}</div>\r\n        <div><strong>OrderNumber</strong>: {{ o.orderNumber }}</div>\r\n        <div><strong>UserName</strong>: {{ o.user.username }}</div>\r\n        <!--<div><strong>Description</strong>: {{ p.artDescription }}</div>-->\r\n        <button id=\"buyButton\" class=\"btn btn-success btn-sm pull-right\">Buy</button>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <div class=\"order-info col-md-4 well well-sm\" *ngFor=\"let o of orders\">\r\n        <div><strong>OrderDate</strong>: {{ o.orderDate}}</div>\r\n        <div><strong>OrderNumber</strong>: {{ o.orderNumber }}</div>\r\n        <!--<div><strong>productCategory</strong>: {{ o.item.productCategory }}</div>-->\r\n        <!--<div><strong>Description</strong>: {{ p.artDescription }}</div>-->\r\n        <button id=\"buyButton\" class=\"btn btn-success btn-sm pull-right\" (click)=\"deleteOrder(o)\">delete</button>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -293,7 +289,9 @@ var OrderList = /** @class */ (function () {
         var _this = this;
         this.data.getOrders()
             .subscribe(function () { return _this.orders = _this.data.orders; });
-        debugger;
+    };
+    OrderList.prototype.deleteOrder = function (order) {
+        this.data.deleteOrder(order);
     };
     OrderList = __decorate([
         core_1.Component({
@@ -398,6 +396,15 @@ var DataService = /** @class */ (function () {
             item.unitPrice = product.price;
             item.quantity = 1;
             this.order.items.push(item);
+        }
+    };
+    DataService.prototype.deleteOrder = function (order) {
+        debugger;
+        if (this.token && this.token !== "") {
+            return this.http.post("http://localhost:50939/api/orders/delete", order, {
+                headers: new http_1.Headers({ "Authorization": "Bearer " + this.token })
+            })
+                .map(function (succes) { return succes.status; });
         }
     };
     DataService = __decorate([
@@ -540,7 +547,6 @@ var dataService_1 = __webpack_require__("./ClientApp/app/shared/dataService.ts")
 var ProductList = /** @class */ (function () {
     function ProductList(data) {
         this.data = data;
-        //this.products = data.products;
     }
     ProductList.prototype.ngOnInit = function () {
         var _this = this;

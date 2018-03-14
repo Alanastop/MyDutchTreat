@@ -84,6 +84,15 @@ var DataService = /** @class */ (function () {
             this.order.items.push(item);
         }
     };
+    DataService.prototype.deleteOrder = function (order) {
+        debugger;
+        if (this.token && this.token !== "") {
+            return this.http.delete("http://localhost:50939/api/orders", {
+                headers: new http_1.Headers({ "Authorization": "Bearer " + this.token })
+            })
+                .map(function (succes) { return succes.status; });
+        }
+    };
     DataService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [http_1.Http])

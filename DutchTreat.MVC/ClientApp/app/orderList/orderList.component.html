@@ -2,8 +2,8 @@
     <div class="order-info col-md-4 well well-sm" *ngFor="let o of orders">
         <div><strong>OrderDate</strong>: {{ o.orderDate}}</div>
         <div><strong>OrderNumber</strong>: {{ o.orderNumber }}</div>
-        <div><strong>UserName</strong>: {{ o.user.username }}</div>
+        <!--<div><strong>productCategory</strong>: {{ o.item.productCategory }}</div>-->
         <!--<div><strong>Description</strong>: {{ p.artDescription }}</div>-->
-        <button id="buyButton" class="btn btn-success btn-sm pull-right">Buy</button>
+        <button id="buyButton" class="btn btn-success btn-sm pull-right" (click)="deleteOrder(o)">delete</button>
     </div>
 </div>

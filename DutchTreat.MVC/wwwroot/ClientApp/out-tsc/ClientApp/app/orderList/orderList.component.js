@@ -12,31 +12,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var dataService_1 = require("../shared/dataService");
 var router_1 = require("@angular/router");
-var Checkout = /** @class */ (function () {
-    function Checkout(data, router) {
+var OrderList = /** @class */ (function () {
+    function OrderList(data, router) {
         this.data = data;
         this.router = router;
-        this.errorMessage = "";
     }
-    Checkout.prototype.onCheckout = function () {
+    OrderList.prototype.ngOnInit = function () {
         var _this = this;
-        alert("Doing checkout");
-        this.data.checkout()
-            .subscribe(function (success) {
-            if (success) {
-                _this.router.navigate(["/"]);
-            }
-        }, function (err) { return _this.errorMessage = "Failed to save order"; });
+        this.data.getOrders()
+            .subscribe(function () { return _this.orders = _this.data.orders; });
     };
-    Checkout = __decorate([
+    OrderList.prototype.deleteOrder = function (order) {
+        this.data.deleteOrder(order);
+    };
+    OrderList = __decorate([
         core_1.Component({
-            selector: "checkout",
-            templateUrl: "checkout.component.html",
-            styleUrls: ['checkout.component.css']
+            selector: "order-list",
+            templateUrl: "orderList.component.html",
+            styleUrls: ["orderList.component.css"]
         }),
         __metadata("design:paramtypes", [dataService_1.DataService, router_1.Router])
-    ], Checkout);
-    return Checkout;
+    ], OrderList);
+    return OrderList;
 }());
-exports.Checkout = Checkout;
-//# sourceMappingURL=checkout.component.js.map
+exports.OrderList = OrderList;
+//# sourceMappingURL=orderList.component.js.map

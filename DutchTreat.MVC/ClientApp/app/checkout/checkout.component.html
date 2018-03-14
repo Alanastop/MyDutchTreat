@@ -1,7 +1,7 @@
 ﻿<div class="row">
     <div *ngIf="errorMessage" class="alert alert-warning">{{ errorMessage }}</div>
     <h3>Confirm Order</h3>
-    <a routerLink="/orderHistory" class="btn btn-link fa-history myOrders" (click)="myOrders()">Order History</a>
+    <a routerLink="/orderHistory" class="btn btn-link fa-history myOrders" >Order History</a>
     <table class="table table-bordered table-hover">
         <tr *ngFor="let o of data.order.items">
             <td><img src="/img/{{ o.productArtId }}.jpg" alt="o.productTitle" class="img-thumbnail checkout-thumb" /></td>
