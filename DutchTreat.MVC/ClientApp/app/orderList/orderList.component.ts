@@ -14,12 +14,19 @@ export class OrderList implements OnInit{
     constructor(public data: DataService, public router: Router) {
     }
 
+    errorMessage: string = "";
+
     ngOnInit(): void {
         this.data.getOrders()
             .subscribe(() => this.orders = this.data.orders);      
     }
 
     deleteOrder(order: Order) {
-        this.data.deleteOrder(order);
+        this.data.deleteOrder(order)
+            .subscribe(success => {
+                if (success) {
+                    this.router.navigate(["/"]);
+                }
+            }, err => this.errorMessage = "Failed to save order");
     }
 }

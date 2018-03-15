@@ -40,9 +40,20 @@ namespace DutchTreat.Library2.Repositories
 
         public void DeleteEntity(int id)
         {
-            var localOrder = this.DutchContext.Orders.SingleOrDefault(order => order.Id == id);
+            var localOrder = this.DutchContext.Orders
+                .Include(order => order.Items)
+                .SingleOrDefault(order => order.Id == id);
+                
             if (localOrder == null)
                 throw new ArgumentException();
+
+            if (localOrder.Items.Count > 0)
+            {
+                localOrder.Items.ToList().ForEach(item =>
+                {
+                    this.DutchContext.OrderItems.Remove(item);
+                });
+            }              
 
             this.DutchContext.Orders.Remove(localOrder);
         }

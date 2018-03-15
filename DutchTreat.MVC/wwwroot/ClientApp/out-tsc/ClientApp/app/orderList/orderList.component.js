@@ -16,6 +16,7 @@ var OrderList = /** @class */ (function () {
     function OrderList(data, router) {
         this.data = data;
         this.router = router;
+        this.errorMessage = "";
     }
     OrderList.prototype.ngOnInit = function () {
         var _this = this;
@@ -23,7 +24,13 @@ var OrderList = /** @class */ (function () {
             .subscribe(function () { return _this.orders = _this.data.orders; });
     };
     OrderList.prototype.deleteOrder = function (order) {
-        this.data.deleteOrder(order);
+        var _this = this;
+        this.data.deleteOrder(order)
+            .subscribe(function (success) {
+            if (success) {
+                _this.router.navigate(["/"]);
+            }
+        }, function (err) { return _this.errorMessage = "Failed to save order"; });
     };
     OrderList = __decorate([
         core_1.Component({

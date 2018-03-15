@@ -56,7 +56,6 @@ export class DataService {
     }
 
     public getOrders(): Observable<Order[]> {
-        debugger;
         if (this.token) {
             return this.http.get("http://localhost:50939/api/orders", {
                 headers: new Headers({ "Authorization": "Bearer " + this.token })
@@ -89,12 +88,11 @@ export class DataService {
     }
 
     public deleteOrder(order: Order) {
-        debugger;
         if (this.token && this.token !== "") {
             return this.http.post("http://localhost:50939/api/orders/delete", order, {
                 headers: new Headers({ "Authorization": "Bearer " + this.token })
             })
-                .map(succes => succes.status)
+                .map(succes => succes.status);
         }         
     }
 }

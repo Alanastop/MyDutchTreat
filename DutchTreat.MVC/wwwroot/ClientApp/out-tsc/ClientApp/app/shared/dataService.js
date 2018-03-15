@@ -58,7 +58,6 @@ var DataService = /** @class */ (function () {
     };
     DataService.prototype.getOrders = function () {
         var _this = this;
-        debugger;
         if (this.token) {
             return this.http.get("http://localhost:50939/api/orders", {
                 headers: new http_1.Headers({ "Authorization": "Bearer " + this.token })
@@ -85,9 +84,8 @@ var DataService = /** @class */ (function () {
         }
     };
     DataService.prototype.deleteOrder = function (order) {
-        debugger;
         if (this.token && this.token !== "") {
-            return this.http.delete("http://localhost:50939/api/orders", {
+            return this.http.post("http://localhost:50939/api/orders/delete", order, {
                 headers: new http_1.Headers({ "Authorization": "Bearer " + this.token })
             })
                 .map(function (succes) { return succes.status; });

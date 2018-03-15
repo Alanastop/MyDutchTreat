@@ -45,6 +45,18 @@ namespace DutchTreat.Library2
                 cfg.UseSqlServer(this.localConfig.GetConnectionString("DutchConnectionString"));
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder =>
+                    builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .WithExposedHeaders("content-disposition")
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    .SetPreflightMaxAge(TimeSpan.FromSeconds(3600)));
+            });
+
             services.AddTransient<IEntityRepository<Product>, ProductsRepository>();
             services.AddTransient<IEntityRepository<Order>, OrdersRepository>();
             services.AddTransient<IEntityRepository<StoreUser>, StoreUserRepository>();
@@ -67,6 +79,8 @@ namespace DutchTreat.Library2
                     seeder.Seed().Wait();
                 }
             }
+
+            app.UseCors("CorsPolicy");
 
             app.Run(async (context) =>
             {

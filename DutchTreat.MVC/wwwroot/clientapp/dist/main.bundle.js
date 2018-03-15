@@ -258,7 +258,7 @@ module.exports = ""
 /***/ "./ClientApp/app/orderList/orderList.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"order-info col-md-4 well well-sm\" *ngFor=\"let o of orders\">\r\n        <div><strong>OrderDate</strong>: {{ o.orderDate}}</div>\r\n        <div><strong>OrderNumber</strong>: {{ o.orderNumber }}</div>\r\n        <!--<div><strong>productCategory</strong>: {{ o.item.productCategory }}</div>-->\r\n        <!--<div><strong>Description</strong>: {{ p.artDescription }}</div>-->\r\n        <button id=\"buyButton\" class=\"btn btn-success btn-sm pull-right\" (click)=\"deleteOrder(o)\">delete</button>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n    <div *ngIf=\"errorMessage\" class=\"alert alert-warning\">{{ errorMessage }}</div>\r\n    <div class=\"order-info col-md-4 well well-sm\" *ngFor=\"let o of orders\">\r\n        <div><strong>OrderDate</strong>: {{ o.orderDate}}</div>\r\n        <div><strong>OrderNumber</strong>: {{ o.orderNumber }}</div>\r\n        <!--<div><strong>productCategory</strong>: {{ o.item.productCategory }}</div>-->\r\n        <!--<div><strong>Description</strong>: {{ p.artDescription }}</div>-->\r\n        <button id=\"buyButton\" class=\"btn btn-success btn-sm pull-right\" (click)=\"deleteOrder(o)\">delete</button>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -284,6 +284,7 @@ var OrderList = /** @class */ (function () {
     function OrderList(data, router) {
         this.data = data;
         this.router = router;
+        this.errorMessage = "";
     }
     OrderList.prototype.ngOnInit = function () {
         var _this = this;
@@ -291,7 +292,13 @@ var OrderList = /** @class */ (function () {
             .subscribe(function () { return _this.orders = _this.data.orders; });
     };
     OrderList.prototype.deleteOrder = function (order) {
-        this.data.deleteOrder(order);
+        var _this = this;
+        this.data.deleteOrder(order)
+            .subscribe(function (success) {
+            if (success) {
+                _this.router.navigate(["/"]);
+            }
+        }, function (err) { return _this.errorMessage = "Failed to save order"; });
     };
     OrderList = __decorate([
         core_1.Component({
@@ -372,7 +379,6 @@ var DataService = /** @class */ (function () {
     };
     DataService.prototype.getOrders = function () {
         var _this = this;
-        debugger;
         if (this.token) {
             return this.http.get("http://localhost:50939/api/orders", {
                 headers: new http_1.Headers({ "Authorization": "Bearer " + this.token })
@@ -399,7 +405,6 @@ var DataService = /** @class */ (function () {
         }
     };
     DataService.prototype.deleteOrder = function (order) {
-        debugger;
         if (this.token && this.token !== "") {
             return this.http.post("http://localhost:50939/api/orders/delete", order, {
                 headers: new http_1.Headers({ "Authorization": "Bearer " + this.token })

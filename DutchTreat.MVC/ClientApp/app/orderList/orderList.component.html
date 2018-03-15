@@ -1,4 +1,5 @@
 ﻿<div class="row">
+    <div *ngIf="errorMessage" class="alert alert-warning">{{ errorMessage }}</div>
     <div class="order-info col-md-4 well well-sm" *ngFor="let o of orders">
         <div><strong>OrderDate</strong>: {{ o.orderDate}}</div>
         <div><strong>OrderNumber</strong>: {{ o.orderNumber }}</div>
