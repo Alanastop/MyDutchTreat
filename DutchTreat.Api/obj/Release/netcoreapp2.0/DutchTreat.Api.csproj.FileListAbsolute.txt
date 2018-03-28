@@ -1,0 +1,14 @@
+C:\Users\alana\source\repos\DutchTreat\DutchTreat.Api\bin\Release\netcoreapp2.0\DutchTreat.Api.deps.json
+C:\Users\alana\source\repos\DutchTreat\DutchTreat.Api\bin\Release\netcoreapp2.0\DutchTreat.Api.runtimeconfig.json
+C:\Users\alana\source\repos\DutchTreat\DutchTreat.Api\bin\Release\netcoreapp2.0\DutchTreat.Api.runtimeconfig.dev.json
+C:\Users\alana\source\repos\DutchTreat\DutchTreat.Api\bin\Release\netcoreapp2.0\DutchTreat.Api.dll
+C:\Users\alana\source\repos\DutchTreat\DutchTreat.Api\bin\Release\netcoreapp2.0\DutchTreat.Api.pdb
+C:\Users\alana\source\repos\DutchTreat\DutchTreat.Api\bin\Release\netcoreapp2.0\DutchTreat.Library2.dll
+C:\Users\alana\source\repos\DutchTreat\DutchTreat.Api\bin\Release\netcoreapp2.0\DutchTreat.Library2.pdb
+C:\Users\alana\source\repos\DutchTreat\DutchTreat.Api\obj\Release\netcoreapp2.0\DutchTreat.Api.csprojResolveAssemblyReference.cache
+C:\Users\alana\source\repos\DutchTreat\DutchTreat.Api\obj\Release\netcoreapp2.0\DutchTreat.Api.csproj.CoreCompileInputs.cache
+C:\Users\alana\source\repos\DutchTreat\DutchTreat.Api\obj\Release\netcoreapp2.0\DutchTreat.Api.AssemblyInfoInputs.cache
+C:\Users\alana\source\repos\DutchTreat\DutchTreat.Api\obj\Release\netcoreapp2.0\DutchTreat.Api.AssemblyInfo.cs
+C:\Users\alana\source\repos\DutchTreat\DutchTreat.Api\obj\Release\netcoreapp2.0\DutchTreat.Api.csproj.CopyComplete
+C:\Users\alana\source\repos\DutchTreat\DutchTreat.Api\obj\Release\netcoreapp2.0\DutchTreat.Api.dll
+C:\Users\alana\source\repos\DutchTreat\DutchTreat.Api\obj\Release\netcoreapp2.0\DutchTreat.Api.pdb

@@ -1,0 +1,15 @@
+C:\Users\alana\source\repos\DutchTreat\DutchTreat.MVC
+--output-path=obj\Release\netcoreapp2.0\
+--application-name=DutchTreat.MVC
+--content-root=C:\Users\alana\source\repos\DutchTreat\DutchTreat.MVC
+--file=C:\Users\alana\source\repos\DutchTreat\DutchTreat.MVC\Pages\Error.cshtml
+--file=C:\Users\alana\source\repos\DutchTreat\DutchTreat.MVC\Pages\_ViewStart.cshtml
+--file=C:\Users\alana\source\repos\DutchTreat\DutchTreat.MVC\Views\Account\Login.cshtml
+--file=C:\Users\alana\source\repos\DutchTreat\DutchTreat.MVC\Views\Account\Register.cshtml
+--file=C:\Users\alana\source\repos\DutchTreat\DutchTreat.MVC\Views\App\About.cshtml
+--file=C:\Users\alana\source\repos\DutchTreat\DutchTreat.MVC\Views\App\Contact.cshtml
+--file=C:\Users\alana\source\repos\DutchTreat\DutchTreat.MVC\Views\App\Index.cshtml
+--file=C:\Users\alana\source\repos\DutchTreat\DutchTreat.MVC\Views\App\Shop.cshtml
+--file=C:\Users\alana\source\repos\DutchTreat\DutchTreat.MVC\Views\Shared\_Layout.cshtml
+--file=C:\Users\alana\source\repos\DutchTreat\DutchTreat.MVC\Views\_ViewImports.cshtml
+--file=C:\Users\alana\source\repos\DutchTreat\DutchTreat.MVC\Views\_ViewStart.cshtml
